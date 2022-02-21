@@ -1,0 +1,13 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require "bundler/setup"
+require "offense_to_corrector"
+
+CODE = <<~RUBY
+  update_attributes_book.update_attributes(author: "Alice")
+                         ^^^^^^^^^^^^^^^^^ Use `update` instead of `update_attributes`.
+RUBY
+
+require "irb"
+IRB.start(__FILE__)

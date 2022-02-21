@@ -1,0 +1,32 @@
+module RuboCop
+  module Cop
+    module <%= cop_type %>
+      class <%= class_name %> < Cop
+        MSG = "<%= error_message %>"
+
+        def_node_matcher :matches?, <<~PATTERN
+          <%= match_pattern %>
+        PATTERN
+
+        def on_<%= node_type %>(node)
+          return false unless matches?(node)
+
+          add_offense(node,
+            message: MSG,
+            location: :<%= node_location.to_sym %>,
+            severity: :<%= offense_severity.to_sym %>
+          )
+        end
+
+        # def autocorrect(node)
+        #   lambda do |corrector|
+        #     corrector.replace(
+        #       node.loc.<%= node_location.to_s %>,
+        #       "<NEW_CODE_HERE>"
+        #     )
+        #   end
+        # end
+      end
+    end
+  end
+end
