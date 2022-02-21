@@ -4,6 +4,11 @@
 require "bundler/setup"
 require "offense_to_corrector"
 
+CODE2 = <<~RUBY
+  @template = OffenseTemplate.new
+                             ^^^^
+RUBY
+
 CODE = <<~RUBY
   update_attributes_book.update_attributes(author: "Alice")
                          ^^^^^^^^^^^^^^^^^ Use `update` instead of `update_attributes`.
